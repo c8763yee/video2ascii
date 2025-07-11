@@ -1,0 +1,23 @@
+# Compiled executable
+C-remake/video2ascii
+
+# Build artifacts
+*.o
+*.a
+*.so
+*.dylib
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+/tmp/
+*.tmp
