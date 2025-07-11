@@ -2,6 +2,32 @@
 
 A high-performance C implementation of video2ascii that converts video files into colored ASCII art displayed in the terminal. This version supports 24-bit color output and uses FFmpeg for robust video decoding.
 
+## Quick Start
+
+### Demo Mode (No FFmpeg required)
+If FFmpeg libraries are not installed, the program will build in demo mode:
+
+```bash
+cd C-remake
+make
+./video2ascii any_filename.mp4
+```
+
+This will show a colorful ASCII art demonstration and explain the features.
+
+### Full Mode (FFmpeg required)
+For actual video processing, install FFmpeg development libraries first:
+
+```bash
+# Ubuntu/Debian
+sudo apt install libavformat-dev libavcodec-dev libavutil-dev libswscale-dev
+
+# Then build and use
+cd C-remake
+make clean && make
+./video2ascii path/to/your/video.mp4
+```
+
 ## Features
 
 - **Video Decoding**: Uses FFmpeg libraries for wide format support
@@ -194,8 +220,23 @@ This is a complete rewrite in C for educational and practical purposes. Please e
 ## Comparison with Python Version
 
 This C implementation offers several advantages over the original Python version:
-- **Performance**: Significantly faster video processing and display
-- **Memory Efficiency**: Lower memory usage with direct C memory management
-- **Color Support**: Full 24-bit color vs. grayscale ASCII
-- **Format Support**: Broader video format support through FFmpeg
-- **Standalone**: No Python runtime dependencies required
+
+| Feature | Python Version | C Remake |
+|---------|---------------|----------|
+| **Performance** | Moderate (OpenCV + PIL) | High (native C + FFmpeg) |
+| **Memory Usage** | High (Python runtime) | Low (direct memory management) |
+| **Color Support** | Grayscale only | Full 24-bit RGB |
+| **Video Formats** | Limited (OpenCV) | Extensive (FFmpeg) |
+| **ASCII Characters** | 11 characters | 11 characters |
+| **Max Width** | 90 characters | 80 characters (configurable) |
+| **Dependencies** | Python, OpenCV, PIL | FFmpeg libraries only |
+| **Startup Time** | Slow (Python import) | Fast (compiled binary) |
+| **Terminal Clear** | `os.system('cls')` | ANSI escape codes |
+| **Color Output** | None | ANSI 24-bit RGB |
+
+### Key Improvements:
+- **Better Performance**: C implementation is significantly faster
+- **True Color**: Each ASCII character retains original pixel colors
+- **Wide Format Support**: Handles any video format FFmpeg supports
+- **Standalone Binary**: No runtime dependencies after compilation
+- **Cross-platform**: Works on Linux, macOS, and Windows (with appropriate builds)
